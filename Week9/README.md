@@ -54,20 +54,6 @@ screenshot_cart.png
 NOTES.md содержит результаты измерений, ошибки watch/read и объяснение,
 где хранится каждое состояние. Измерения получены выполнением тестов.
 
-## Две версии
-
-В архиве сохранён локальный Git-репозиторий:
-
-```shell
-git log --oneline
-git show HEAD~1:lib/main.dart
-git worktree add ../shop_lifted HEAD~1
-```
-
-Первый коммит называется `lifted`: состояние в Shell, параметры вниз,
-callbacks вверх. Следующий коммит содержит финальную версию с provider.
-В папке shop_lifted можно отдельно выполнить flutter pub get и flutter run.
-
 ## Проверка
 
 ```shell
@@ -85,16 +71,3 @@ flutter test tool/screenshots_test.dart
 
 Если SDK расположен иначе, укажите его путь. Тест делает реальные снимки
 виджетов Flutter и сохраняет их в корне проекта.
-
-## Публикация в свой репозиторий
-
-Удалённый GitHub-репозиторий не настроен. После создания пустого
-репозитория на GitHub добавьте его адрес и отправьте оба коммита:
-
-```shell
-git remote add origin https://github.com/USERNAME/REPOSITORY.git
-git push -u origin main
-```
-
-Не выполняйте git init заново в другой папке с копиями исходников,
-если нужно сохранить коммит lifted из задания.
