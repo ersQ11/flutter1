@@ -30,6 +30,13 @@ class Cart extends ChangeNotifier {
     notifyListeners();
   }
 
+  void decrement(Book b) {
+    final quantity = _qty[b];
+    if (quantity == null || quantity <= 1) return;
+    _qty[b] = quantity - 1;
+    notifyListeners();
+  }
+
   void clear() {
     _qty.clear();
     notifyListeners();

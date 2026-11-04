@@ -64,6 +64,13 @@ class _CartScreenState extends State<CartScreen> {
                             trailing: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
+                                IconButton(
+                                  tooltip: 'Decrease quantity of ${b.title}',
+                                  icon: const Icon(Icons.remove),
+                                  onPressed: cart.qtyOf(b) > 1
+                                      ? () => cart.decrement(b)
+                                      : null,
+                                ),
                                 Text('×${cart.qtyOf(b)}'),
                                 IconButton(
                                   tooltip: 'Increase ${b.title}',

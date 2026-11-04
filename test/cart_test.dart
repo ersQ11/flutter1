@@ -3,6 +3,27 @@ import 'package:shop/models/book.dart';
 import 'package:shop/models/cart.dart';
 
 void main() {
+  test('decrement updates total and stops at one without removing a book', () {
+    final cart = Cart();
+    addTearDown(cart.dispose);
+    cart.add(books[0]);
+    cart.increment(books[0]);
+    var notifications = 0;
+    cart.addListener(() => notifications++);
+    cart.decrement(books[0]);
+    expect(cart.qtyOf(books[0]), 1);
+    expect(cart.total, 4200);
+    expect(cart.count, 1);
+    expect(notifications, 1);
+    cart.decrement(books[0]);
+    cart.decrement(books[1]);
+    expect(cart.qtyOf(books[0]), 1);
+    expect(cart.qtyOf(books[1]), 0);
+    expect(cart.count, 1);
+    expect(cart.total, 4200);
+    expect(notifications, 1);
+  });
+
   test('model works without a screen and rejects duplicates', () {
     final cart = Cart();
     addTearDown(cart.dispose);
